@@ -12,4 +12,14 @@ RecordStore.prototype.addToStock = function (record) {
   return this.collection.push(record);
 }
 
+RecordStore.prototype.removeFromStock = function (record) {
+  const remainingStock = this.collection.filter((singleRecord) => {return singleRecord.title !== record.title});
+  return this.collection = remainingStock;
+}
+
+RecordStore.prototype.sellRecord = function (record) {
+  removeFromStock(this.record);
+  addFunds(this.record.price);
+}
+
 module.exports = RecordStore;
