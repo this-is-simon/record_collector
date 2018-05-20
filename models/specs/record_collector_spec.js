@@ -6,6 +6,8 @@ describe ('RecordCollector', function(){
   let recordCollector;
   let record1;
   let record2;
+  let record3;
+
 
   beforeEach(function () {
     recordCollector = new RecordCollector({
@@ -21,6 +23,12 @@ describe ('RecordCollector', function(){
       artist: 'Guns n Roses',
       genre: 'rock',
       price: 600
+    });
+    record3 = new Record ({
+      title: 'Alabama Zootown',
+      artist: 'Badaboom',
+      genre: 'blues',
+      price: 500
     });
   });
 
@@ -85,6 +93,14 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.collection, []);
     assert.deepStrictEqual(recordCollector.funds, 0);
   });
+
+  it('should arrange records by alphabet', function(){
+    recordCollector.addRecord(record1);
+    recordCollector.addRecord(record2);
+    recordCollector.addRecord(record3);
+    recordCollector.arrangeRecords();
+    assert.deepStrictEqual(recordCollector.collection, [record3, record1, record2]);
+  })
 
 
 });

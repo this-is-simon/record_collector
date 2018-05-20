@@ -10,7 +10,6 @@ Transaction.prototype.exchangeRecord = function(record){
   } else {
     return "Sorry, buyer doesn't have enough funds."
   }
-
 }
 
 
