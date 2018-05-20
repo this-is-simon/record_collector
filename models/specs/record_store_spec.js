@@ -67,8 +67,6 @@ describe ('RecordStore', function(){
     assert.strictEqual(recordStore.sellRecord(record2), 'Sorry, we don\'t have that record.');
     assert.strictEqual(recordStore.collection.length, 1);
     assert.strictEqual(recordStore.funds, 0);
-
-
   });
 
 

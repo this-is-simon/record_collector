@@ -23,9 +23,9 @@ RecordStore.prototype.sellRecord = function (record) {
   if (this.collection.includes(record)) {
   this.removeFromStock(record);
   this.addFunds(record.price);
-} else {
+  } else {
   return 'Sorry, we don\'t have that record.';
-};
+  };
 }
 
 module.exports = RecordStore;

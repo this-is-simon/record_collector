@@ -37,5 +37,12 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.collection, []);
   });
 
+  it('should be able to add a record to their collection', function() {
+    recordCollector.addRecord(record1);
+    assert.deepStrictEqual(recordCollector.collection, [record1])
+  })
+
+
+
 
 });
