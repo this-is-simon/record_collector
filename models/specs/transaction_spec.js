@@ -49,7 +49,7 @@ describe('Transaction', function(){
   });
 
   it('should be able to exchange record - shop sells to collector', function(){
-    sellerA.addToStock(record1);
+    sellerA.addRecord(record1);
     buyerA.addFunds(1500);
     transactionA.exchangeRecord(record1);
     assert.deepStrictEqual(sellerA.funds, 1000);

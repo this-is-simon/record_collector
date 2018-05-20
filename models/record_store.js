@@ -8,7 +8,7 @@ RecordStore.prototype.addFunds = function (amount) {
   return this.funds += amount;
 }
 
-RecordStore.prototype.addToStock = function (record) {
+RecordStore.prototype.addRecord = function (record) {
   return this.collection.push(record);
 }
 
@@ -21,7 +21,7 @@ RecordStore.prototype.removeFromStock = function (record) {
 
 RecordStore.prototype.buyRecord = function(record){
   if (this.funds > record.price){
-    this.addToStock(record);
+    this.addRecord(record);
     this.funds -= record.price;
   } else {
     return "Sorry, this record is too expensive for you."

@@ -39,21 +39,21 @@ describe ('RecordStore', function(){
   });
 
   it('should be able to add a record', function(){
-    recordStore.addToStock(record1);
-    recordStore.addToStock(record2);
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
     assert.strictEqual(recordStore.collection.length, 2)
   });
 
   it('should be able to remove a record', function(){
-    recordStore.addToStock(record1);
-    recordStore.addToStock(record2);
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
     recordStore.removeFromStock(record1);
     assert.strictEqual(recordStore.collection.length, 1)
   });
 
   it('should be able to sell a record', function(){
-    recordStore.addToStock(record1);
-    recordStore.addToStock(record2);
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
     assert.strictEqual(recordStore.funds, 0);
     recordStore.sellRecord(record1);
     assert.strictEqual(recordStore.collection.length, 1);
@@ -61,7 +61,7 @@ describe ('RecordStore', function(){
   });
 
   it('should not be able to sell record not in stock', function(){
-    recordStore.addToStock(record1);
+    recordStore.addRecord(record1);
     assert.strictEqual(recordStore.funds, 0);
     recordStore.sellRecord(record2);
     assert.strictEqual(recordStore.sellRecord(record2), 'Sorry, we don\'t have that record.');
