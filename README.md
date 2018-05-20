@@ -41,6 +41,6 @@ should be able handle an exchange of a record when the seller has the record and
 
 ## What I learned
 
-- Using enumerators in Javascript
+- Using enumerators and practising TDD in Javascript
 - Using an intermediary Transaction class to handle instances where an exchange occurs between two objects
 - The importance of using the same method name for different classes where an intermediary object such as Transaction is involved. For example, my Record Store function to add a record was initially called 'addToStock' while my Record Collector function to add a record was called 'addRecord'. This meant that the function 'exchangeRecord' in Transaction would only work in one direction, until I changed all instances of 'addToStock' to 'addRecord'. The same was true for 'removeRecord'.
