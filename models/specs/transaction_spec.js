@@ -29,6 +29,10 @@ describe('Transaction', function(){
     assert.deepStrictEqual(transactionA.buyer, buyerA);
   });
 
+  it('should have a seller', function(){
+    assert.deepStrictEqual(transactionA.seller, sellerA);
+  });
+
 });
 
 // record1 = new Record({
