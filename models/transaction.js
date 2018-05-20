@@ -7,7 +7,9 @@ Transaction.prototype.exchangeRecord = function(record){
   if (this.buyer.funds > record.price){
     this.buyer.buyRecord(record);
     this.seller.sellRecord(record);
-  };
+  } else {
+    return "Sorry, buyer doesn't have enough funds."
+  }
 
 }
 

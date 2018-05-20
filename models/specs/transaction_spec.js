@@ -68,4 +68,14 @@ describe('Transaction', function(){
     assert.deepStrictEqual(buyerB.collection, [record1]);
   });
 
+  it('shouldn\'t be able to exchange record - collector sells to shop', function(){
+    sellerB.addRecord(record1);
+    buyerB.addFunds(200);
+    transactionB.exchangeRecord(record1);
+    assert.deepStrictEqual(sellerB.funds, 0);
+    assert.deepStrictEqual(buyerB.funds, 200);
+    assert.deepStrictEqual(sellerB.collection, [record1]);
+    assert.deepStrictEqual(buyerB.collection, []);
+  });
+
 });
