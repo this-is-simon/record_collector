@@ -42,6 +42,12 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.collection, [record1])
   })
 
+  it('should be able to find a record by title', function() {
+    recordCollector.addRecord(record2);
+    actual = recordCollector.findRecordByTitle('Appetite for Destruction');
+    assert.deepStrictEqual(actual, [record2]);
+  });
+
 
 
 
