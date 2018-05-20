@@ -33,5 +33,9 @@ describe ('RecordCollector', function(){
     assert.strictEqual(recordCollector.funds, 100);
   });
 
+  it('should start with an empty collection of records', function(){
+    assert.deepStrictEqual(recordCollector.collection, []);
+  });
+
 
 });
