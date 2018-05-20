@@ -25,4 +25,15 @@ RecordCollector.prototype.removeRecord = function(record){
   return this.collection = remainingCollection;
 };
 
+RecordCollector.prototype.buyRecord = function(record){
+  if (this.funds > record.price){
+    this.addRecord(record);
+    this.funds -= record.price;
+  } else {
+    return "Sorry, this record is too expensive for you."
+  }
+}
+
+
+
 module.exports = RecordCollector;

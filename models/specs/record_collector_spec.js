@@ -55,5 +55,20 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.collection, [record2]);
   });
 
+  it('should be able to buy a record', function() {
+    recordCollector.addFunds(1100);
+    recordCollector.buyRecord(record1);
+    assert.deepStrictEqual(recordCollector.collection, [record1]);
+    assert.deepStrictEqual(recordCollector.funds, 100);
+  });
+
+  it('should not be able to buy an expensive record', function() {
+    recordCollector.addFunds(500);
+    actual = recordCollector.buyRecord(record1);
+    assert.deepStrictEqual(actual, "Sorry, this record is too expensive for you.")
+    assert.deepStrictEqual(recordCollector.collection, []);
+    assert.deepStrictEqual(recordCollector.funds, 500);
+  });
+
 
 });
