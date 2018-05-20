@@ -14,6 +14,7 @@ TDD models using Mocha.
 # MVP
 
 A record collector:
+
 should start with no funds
 should be able to add funds
 should start with an empty collection of records
@@ -24,6 +25,7 @@ should be able to buy a record if it has enough funds
 should be able to sell a record if it has the record
 
 A record store:
+
 should have a name
 should start with no funds
 should be able to add funds
@@ -32,6 +34,7 @@ should be able to add a record to its stock
 should be able to sell a record if it has the record
 
 A transaction:
+
 should have a buyer
 should have a seller
 should be able handle an exchange of a record when the seller has the record and the buyer has enough funds
