@@ -94,7 +94,7 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.funds, 0);
   });
 
-  it('should arrange records by alphabet', function(){
+  it('should arrange records alphabetically by artist', function(){
     recordCollector.addRecord(record1);
     recordCollector.addRecord(record2);
     recordCollector.addRecord(record3);
