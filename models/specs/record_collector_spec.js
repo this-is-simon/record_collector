@@ -78,5 +78,13 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.funds, 1000);
   });
 
+  it('shouldn\'t be able to sell record if no record', function() {
+    recordCollector.sellRecord(record1);
+    actual = recordCollector.sellRecord(record1);
+    assert.deepStrictEqual(actual, "Sorry, the collector doesn't have this record.")
+    assert.deepStrictEqual(recordCollector.collection, []);
+    assert.deepStrictEqual(recordCollector.funds, 0);
+  });
+
 
 });
