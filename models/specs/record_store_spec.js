@@ -60,6 +60,17 @@ describe ('RecordStore', function(){
     assert.strictEqual(recordStore.funds, 1000);
   });
 
+  it('should not be able to sell record not in stock', function(){
+    recordStore.addToStock(record1);
+    assert.strictEqual(recordStore.funds, 0);
+    recordStore.sellRecord(record2);
+    assert.strictEqual(recordStore.sellRecord(record2), 'Sorry, we don\'t have that record.');
+    assert.strictEqual(recordStore.collection.length, 1);
+    assert.strictEqual(recordStore.funds, 0);
+
+
+  });
+
 
 
 

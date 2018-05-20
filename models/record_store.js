@@ -20,9 +20,12 @@ RecordStore.prototype.removeFromStock = function (record) {
 }
 
 RecordStore.prototype.sellRecord = function (record) {
-  //TODO If the record exists, then...
+  if (this.collection.includes(record)) {
   this.removeFromStock(record);
   this.addFunds(record.price);
+} else {
+  return 'Sorry, we don\'t have that record.';
+};
 }
 
 module.exports = RecordStore;
