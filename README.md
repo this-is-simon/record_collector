@@ -1,15 +1,17 @@
-# record_collector
+# Record Collector & Record Shop
 
-Learning Objectives
-Be able to create and unit test models
-Be able to pass callback to the built in Array enumeration methods
-Be able to select the appropriate Array enumeration method
-Brief
-Your task is to model the interaction between a record store and a record collector to enable them to buy and sell records from one another. You should include a transaction class that is responsible for handling the exchange of records. The store and collector should also have functionality that allows them to search and organise their records.
+## Learning Objectives
+- Be able to create and unit test models
+- Be able to pass callback to the built in Array enumeration methods
+- Be able to select the appropriate Array enumeration method
 
-You have been given the tested Record model. You need to TDD the remaining models using Mocha.
+## Brief
 
-#MVP
+Model the interaction between a record store and a record collector to enable them to buy and sell records from one another. You should include a transaction class that is responsible for handling the exchange of records. The store and collector should also have functionality that allows them to search and organise their records.
+
+TDD models using Mocha.
+
+# MVP
 A record collector:
 
 should start with no funds
