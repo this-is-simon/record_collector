@@ -19,6 +19,15 @@ RecordStore.prototype.removeFromStock = function (record) {
   return this.collection = remainingStock;
 }
 
+RecordStore.prototype.buyRecord = function(record){
+  if (this.funds > record.price){
+    this.addToStock(record);
+    this.funds -= record.price;
+  } else {
+    return "Sorry, this record is too expensive for you."
+  }
+};
+
 RecordStore.prototype.sellRecord = function (record) {
   if (this.collection.includes(record)) {
   this.removeFromStock(record);

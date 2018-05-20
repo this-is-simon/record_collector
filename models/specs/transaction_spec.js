@@ -8,10 +8,10 @@ describe('Transaction', function(){
   let buyerA;
   let sellerA;
   let transactionA;
-  // let buyerB;
-  // let sellerB;
-  // let record1;
-  // let record2;
+  let buyerB;
+  let sellerB;
+  let transactionB;
+  let record1;
 
   beforeEach(function () {
     buyerA = new RecordCollector({});
@@ -23,6 +23,21 @@ describe('Transaction', function(){
       seller: sellerA,
     });
 
+    buyerB = new RecordStore({
+      name: 'Emperor Records'
+    });
+    sellerB = new RecordCollector({});
+    transactionB = new Transaction({
+      buyer: buyerB,
+      seller: sellerB,
+    });
+
+    record1 = new Record({
+      title: 'Their Greatest Hits 1971 - 1975',
+      artist: 'Eagles',
+      genre: 'rock',
+      price: 1000
+    });
   });
 
   it('should have a buyer', function(){
@@ -33,17 +48,24 @@ describe('Transaction', function(){
     assert.deepStrictEqual(transactionA.seller, sellerA);
   });
 
-});
+  it('should be able to exchange record - shop sells to collector', function(){
+    sellerA.addToStock(record1);
+    buyerA.addFunds(1500);
+    transactionA.exchangeRecord(record1);
+    assert.deepStrictEqual(sellerA.funds, 1000);
+    assert.deepStrictEqual(buyerA.funds, 500);
+    assert.deepStrictEqual(sellerA.collection, []);
+    assert.deepStrictEqual(buyerA.collection, [record1]);
+  });
 
-// record1 = new Record({
-//   title: 'Their Greatest Hits 1971 - 1975',
-//   artist: 'Eagles',
-//   genre: 'rock',
-//   price: 1000
-// });
-// record2 = new Record({
-//   title: 'Appetite for Destruction',
-//   artist: 'Guns n Roses',
-//   genre: 'rock',
-//   price: 600
-// });
+  it('should be able to exchange record - collector sells to shop', function(){
+    sellerB.addRecord(record1);
+    buyerB.addFunds(1500);
+    transactionB.exchangeRecord(record1);
+    assert.deepStrictEqual(sellerB.funds, 1000);
+    assert.deepStrictEqual(buyerB.funds, 500);
+    assert.deepStrictEqual(sellerB.collection, []);
+    assert.deepStrictEqual(buyerB.collection, [record1]);
+  });
+
+});
