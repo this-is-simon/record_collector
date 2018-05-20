@@ -48,7 +48,12 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(actual, [record2]);
   });
 
-
+  it('should be able to remove a record', function() {
+    recordCollector.addRecord(record1);
+    recordCollector.addRecord(record2);
+    recordCollector.removeRecord(record1);
+    assert.deepStrictEqual(recordCollector.collection, [record2]);
+  });
 
 
 });

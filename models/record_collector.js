@@ -18,4 +18,11 @@ RecordCollector.prototype.findRecordByTitle = function(title) {
   return foundRecord;
 }
 
+RecordCollector.prototype.removeRecord = function(record){
+  const remainingCollection = this.collection.filter((singleRecord) => {
+    return singleRecord !== record
+  });
+  return this.collection = remainingCollection;
+};
+
 module.exports = RecordCollector;
