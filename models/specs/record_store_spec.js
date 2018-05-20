@@ -55,7 +55,7 @@ describe ('RecordStore', function(){
   //   recordStore.addToStock(record1);
   //   recordStore.addToStock(record2);
   //   recordStore.sellRecord(record1);
-  //   assert.strictEqual(recordStore.collection.length, 1)
+  //   assert.strictEqual(recordStore.collection.length, 1);
   // });
 
 

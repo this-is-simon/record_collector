@@ -3,4 +3,8 @@ const RecordCollector  = function (options) {
   this.collection = [];
 };
 
+RecordCollector.prototype.addFunds = function(amount) {
+  return this.funds += amount;
+}
+
 module.exports = RecordCollector;
