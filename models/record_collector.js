@@ -32,7 +32,18 @@ RecordCollector.prototype.buyRecord = function(record){
   } else {
     return "Sorry, this record is too expensive for you."
   }
+};
+
+RecordCollector.prototype.sellRecord = function(record){
+  if (this.collection.includes(record)) {
+    this.removeRecord(record);
+    this.funds += record.price;
+  } else {
+    return "Sorry, the collector doesn't have this record."
+  }
 }
+
+
 
 
 

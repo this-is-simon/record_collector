@@ -70,5 +70,13 @@ describe ('RecordCollector', function(){
     assert.deepStrictEqual(recordCollector.funds, 500);
   });
 
+  it('should be able to sell record', function() {
+    recordCollector.addRecord(record1);
+    recordCollector.addRecord(record2);
+    recordCollector.sellRecord(record1);
+    assert.deepStrictEqual(recordCollector.collection, [record2]);
+    assert.deepStrictEqual(recordCollector.funds, 1000);
+  });
+
 
 });
