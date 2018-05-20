@@ -74,6 +74,8 @@ describe('Transaction', function(){
     recordStoreSeller.addRecord(record1);
     recordCollectorBuyer.addFunds(200);
     transaction1.exchangeRecord(record1);
+    actual = transaction1.exchangeRecord(record1);
+    assert.deepStrictEqual(actual, "Sorry, buyer doesn't have enough funds.")
     assert.deepStrictEqual(recordStoreSeller.funds, 0);
     assert.deepStrictEqual(recordCollectorBuyer.funds, 200);
     assert.deepStrictEqual(recordStoreSeller.collection, [record1]);
@@ -85,6 +87,8 @@ describe('Transaction', function(){
     recordCollectorSeller.addRecord(record1);
     recordStoreBuyer.addFunds(200);
     transaction2.exchangeRecord(record1);
+    actual = transaction2.exchangeRecord(record1);
+    assert.deepStrictEqual(actual, "Sorry, buyer doesn't have enough funds.")
     assert.deepStrictEqual(recordCollectorSeller.funds, 0);
     assert.deepStrictEqual(recordStoreBuyer.funds, 200);
     assert.deepStrictEqual(recordCollectorSeller.collection, [record1]);
