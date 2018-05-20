@@ -12,7 +12,7 @@ RecordStore.prototype.addRecord = function (record) {
   return this.collection.push(record);
 }
 
-RecordStore.prototype.removeFromStock = function (record) {
+RecordStore.prototype.removeRecord = function (record) {
   const remainingStock = this.collection.filter((singleRecord) => {
   return singleRecord.title !== record.title
 });
@@ -30,7 +30,7 @@ RecordStore.prototype.buyRecord = function(record){
 
 RecordStore.prototype.sellRecord = function (record) {
   if (this.collection.includes(record)) {
-  this.removeFromStock(record);
+  this.removeRecord(record);
   this.addFunds(record.price);
   } else {
   return 'Sorry, we don\'t have that record.';

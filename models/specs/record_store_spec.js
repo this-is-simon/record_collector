@@ -47,7 +47,7 @@ describe ('RecordStore', function(){
   it('should be able to remove a record', function(){
     recordStore.addRecord(record1);
     recordStore.addRecord(record2);
-    recordStore.removeFromStock(record1);
+    recordStore.removeRecord(record1);
     assert.strictEqual(recordStore.collection.length, 1)
   });
 
