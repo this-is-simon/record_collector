@@ -5,31 +5,33 @@ const Record = require('../record');
 const assert = require('assert');
 
 describe('Transaction', function(){
-  let buyerA;
-  let sellerA;
-  let transactionA;
-  let buyerB;
-  let sellerB;
-  let transactionB;
+  let recordCollectorBuyer;
+  let recordStoreSeller;
+  let transaction1;
+
+  let recordStoreBuyer;
+  let recordCollectorSeller;
+  let transaction2;
+
   let record1;
 
   beforeEach(function () {
-    buyerA = new RecordCollector({});
-    sellerA = new RecordStore({
+    recordCollectorBuyer = new RecordCollector({});
+    recordStoreSeller = new RecordStore({
       name: 'Emperor Records'
     });
-    transactionA = new Transaction({
-      buyer: buyerA,
-      seller: sellerA,
+    transaction1 = new Transaction({
+      buyer: recordCollectorBuyer,
+      seller: recordStoreSeller,
     });
 
-    buyerB = new RecordStore({
+    recordStoreBuyer = new RecordStore({
       name: 'Emperor Records'
     });
-    sellerB = new RecordCollector({});
-    transactionB = new Transaction({
-      buyer: buyerB,
-      seller: sellerB,
+    recordCollectorSeller = new RecordCollector({});
+    transaction2 = new Transaction({
+      buyer: recordStoreBuyer,
+      seller: recordCollectorSeller,
     });
 
     record1 = new Record({
@@ -41,41 +43,52 @@ describe('Transaction', function(){
   });
 
   it('should have a buyer', function(){
-    assert.deepStrictEqual(transactionA.buyer, buyerA);
+    assert.deepStrictEqual(transaction1.buyer, recordCollectorBuyer);
   });
 
   it('should have a seller', function(){
-    assert.deepStrictEqual(transactionA.seller, sellerA);
+    assert.deepStrictEqual(transaction1.seller, recordStoreSeller);
   });
 
   it('should be able to exchange record - shop sells to collector', function(){
-    sellerA.addRecord(record1);
-    buyerA.addFunds(1500);
-    transactionA.exchangeRecord(record1);
-    assert.deepStrictEqual(sellerA.funds, 1000);
-    assert.deepStrictEqual(buyerA.funds, 500);
-    assert.deepStrictEqual(sellerA.collection, []);
-    assert.deepStrictEqual(buyerA.collection, [record1]);
+    recordStoreSeller.addRecord(record1);
+    recordCollectorBuyer.addFunds(1500);
+    transaction1.exchangeRecord(record1);
+    assert.deepStrictEqual(recordStoreSeller.funds, 1000);
+    assert.deepStrictEqual(recordCollectorBuyer.funds, 500);
+    assert.deepStrictEqual(recordStoreSeller.collection, []);
+    assert.deepStrictEqual(recordCollectorBuyer.collection, [record1]);
   });
 
   it('should be able to exchange record - collector sells to shop', function(){
-    sellerB.addRecord(record1);
-    buyerB.addFunds(1500);
-    transactionB.exchangeRecord(record1);
-    assert.deepStrictEqual(sellerB.funds, 1000);
-    assert.deepStrictEqual(buyerB.funds, 500);
-    assert.deepStrictEqual(sellerB.collection, []);
-    assert.deepStrictEqual(buyerB.collection, [record1]);
+    recordCollectorSeller.addRecord(record1);
+    recordStoreBuyer.addFunds(1500);
+    transaction2.exchangeRecord(record1);
+    assert.deepStrictEqual(recordCollectorSeller.funds, 1000);
+    assert.deepStrictEqual(recordStoreBuyer.funds, 500);
+    assert.deepStrictEqual(recordCollectorSeller.collection, []);
+    assert.deepStrictEqual(recordStoreBuyer.collection, [record1]);
   });
 
+  it('shouldn\'t be able to exchange record - shop sells to collector', function(){
+    recordStoreSeller.addRecord(record1);
+    recordCollectorBuyer.addFunds(200);
+    transaction1.exchangeRecord(record1);
+    assert.deepStrictEqual(recordStoreSeller.funds, 0);
+    assert.deepStrictEqual(recordCollectorBuyer.funds, 200);
+    assert.deepStrictEqual(recordStoreSeller.collection, [record1]);
+    assert.deepStrictEqual(recordCollectorBuyer.collection, []);
+  });
+
+
   it('shouldn\'t be able to exchange record - collector sells to shop', function(){
-    sellerB.addRecord(record1);
-    buyerB.addFunds(200);
-    transactionB.exchangeRecord(record1);
-    assert.deepStrictEqual(sellerB.funds, 0);
-    assert.deepStrictEqual(buyerB.funds, 200);
-    assert.deepStrictEqual(sellerB.collection, [record1]);
-    assert.deepStrictEqual(buyerB.collection, []);
+    recordCollectorSeller.addRecord(record1);
+    recordStoreBuyer.addFunds(200);
+    transaction2.exchangeRecord(record1);
+    assert.deepStrictEqual(recordCollectorSeller.funds, 0);
+    assert.deepStrictEqual(recordStoreBuyer.funds, 200);
+    assert.deepStrictEqual(recordCollectorSeller.collection, [record1]);
+    assert.deepStrictEqual(recordStoreBuyer.collection, []);
   });
 
 });
