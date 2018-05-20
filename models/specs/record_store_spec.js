@@ -54,8 +54,10 @@ describe ('RecordStore', function(){
   it('should be able to sell a record', function(){
     recordStore.addToStock(record1);
     recordStore.addToStock(record2);
+    assert.strictEqual(recordStore.funds, 0);
     recordStore.sellRecord(record1);
     assert.strictEqual(recordStore.collection.length, 1);
+    assert.strictEqual(recordStore.funds, 1000);
   });
 
 
